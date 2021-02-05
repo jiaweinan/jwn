@@ -1,0 +1,189 @@
+Git 安装
+
+1.终端 输入
+
+   Git --version  
+
+2.创建全局用户名，全局邮箱作为配置信息
+
+```
+$ git config --global user.name "jia.weinan"
+$ git config --global user.email jia.weinan@shenglitec.com
+```
+
+3.查看信息
+
+git config --list
+
+生成密钥
+
+ssh-keygen -t rsa -C "1936782464@qq.com"
+
+获取密匙字符串
+
+- 输入cd指令，进入当前用户目录
+- 输入ls -a指令，查看当前用户目录下所有文件，包括隐藏文件
+- 输入cd .ssh指令，进入.ssh目录
+- 输入ls指令，查看.ssh目录下的文件
+- 输入cat id_rsa.pub指令，查看id_rsa.pub文件中内容
+
+打开你的github账号，在`Settings`中的右侧边导航中找到`SSH and GPG keys`，点击左面面板右上方的`New SSH key`添加密匙
+
+图片中的`Title`填写自己的备注标题名称（自定义），`Key`填写刚才`id_rsa.pub`中的内容。
+
+
+
+### 创建仓库命令
+
+下表列出了 git 创建仓库的命令：
+
+| 命令        | 说明                                   |
+| :---------- | :------------------------------------- |
+| `git init`  | 初始化仓库                             |
+| `git clone` | 拷贝一份远程仓库，也就是下载一个项目。 |
+
+------
+
+**git init** 命用于在目录中创建新的 Git 仓库。
+
+在目录中执行 **git init** 就可以创建一个 Git 仓库了。
+
+例如我们在当前目录下创建一个名为 runoob 的项目：
+
+$ **mkdir** runoob
+$ **cd** runoob**/**
+$ **git init**
+
+
+
+**git clone** 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。
+
+拷贝项目命令格式如下：
+
+```
+ git clone [url]
+```
+
+**[url]** 是你要拷贝的项目。
+
+例如我们拷贝 Github 上的项目：
+
+$ **git clone** https:**//**github.com**/**tianqixin**/**runoob-git-test
+Cloning into 'runoob-git-test'...
+remote: Enumerating objects: 12, done.
+remote: Total 12 **(**delta 0**)**, reused 0 **(**delta 0**)**, pack-reused 12
+Unpacking objects: 100**%** **(**12**/**12**)**, done.
+
+拷贝完成后，在当前目录下会生成一个 runoob-git-test 目录：
+
+```
+$ cd simplegit/
+$ ls
+README.md    runoob-test.txt    test.txt
+```
+
+$ ls -a  查看全部
+
+例如，以下实例拷贝远程 git 项目，本地项目名为 **another-runoob-name**：
+
+$ **git clone** https:**//**github.com**/**tianqixin**/**runoob-git-test another-runoob-name
+Cloning into 'another-runoob-name'...
+remote: Enumerating objects: 12, done.
+remote: Total 12 **(**delta 0**)**, reused 0 **(**delta 0**)**, pack-reused 12
+Unpacking objects: 100**%** **(**12**/**12**)**, done.
+
+## 提交与修改
+
+Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。
+
+下表列出了有关创建与提交你的项目的快照的命令：
+
+| 命令         | 说明                                     |
+| :----------- | :--------------------------------------- |
+| `git add`    | **添加文件到本地仓库**                   |
+| `git status` | 查看仓库当前的状态，显示有变更的文件。   |
+| `git diff`   | 比较文件的不同，即暂存区和工作区的差异。 |
+| `git commit` | 提交暂存区到本地仓库。                   |
+| `git reset`  | 回退版本。                               |
+| `git rm`     | 删除工作区文件。                         |
+| `git mv`     | 移动或重命名工作区文件。                 |
+
+### 提交日志
+
+| 命令               | 说明                                 |
+| :----------------- | :----------------------------------- |
+| `git log`          | 查看历史提交记录                     |
+| `git blame <file>` | 以列表形式查看指定文件的历史修改记录 |
+
+### 远程操作
+
+| 命令         | 说明               |
+| :----------- | :----------------- |
+| `git remote` | 远程仓库操作       |
+| `git fetch`  | 从远程获取代码库   |
+| `git pull`   | 下载远程代码并合并 |
+| `git push`   | 上传远程代码并合并 |
+
+
+
+## 分支
+
+> 1.  \# 列出所有本地分支 
+>
+>    $ git branch
+>
+> 2.  \# 列出所有远程分支
+>
+>    $ git branch -r
+>
+> 3.  \# 列出所有本地分支和远程分支
+>
+>    $ git branch -a
+>
+> 4.  # 新建一个分支，但依然停留在当前分支
+>
+>    $ git branch [branch-name]
+>
+> 5.  \# 新建一个分支，并切换到该分支
+>
+>    $ git checkout -b [branch]
+>
+> 6.  \# 新建一个分支，指向指定commit
+>
+>    $ git branch [branch] [commit]
+>
+> 7.  \# 新建一个分支，与指定的远程分支建立追踪关系
+>
+>    $ git branch --track [branch] [remote-branch]
+>
+> 8.   \# 切换到指定分支，并更新工作区
+>
+>    $ git checkout [branch-name]
+>
+> 9.  \# 切换到上一个分支
+>
+>    $ git checkout -
+>
+> 10.  \# 建立追踪关系，在现有分支与指定的远程分支之间
+>
+>     $ git branch --set-upstream [branch] [remote-branch]
+>
+> 11.  \# 合并指定分支到当前分支
+>
+>     $ git merge [branch]
+>
+> 12.  \# 选择一个commit，合并进当前分支
+>
+>     $ git cherry-pick [commit]
+>
+> 13.  \# 删除分支
+>
+>     $ git branch -d [branch-name]
+>
+> 14.  \# 删除远程分支
+>
+>     $ git push origin --delete [branch-name]
+>
+>     $ git branch -dr [remote/branch]
+>
+>     冲突解决
